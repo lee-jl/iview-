@@ -1,32 +1,41 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div class="app">
+    我是app首页
+    <Button type="primary" @click="btn">Display dialog box</Button>
+    <About @changeValue="changeValue" :title1="isShow"></About>
+
+    <Button @click="showModal = true">Display dialog box</Button>
+    <About1 v-model="showModal"></About1>
   </div>
 </template>
 
-<style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+import About from '@/views/About.vue'
+import About1 from '@/views/About1.vue'
+export default {
+  data () {
+    return {
+      isShow: false,
+      showModal: false
     }
+  },
+  methods: {
+    btn () {
+      this.isShow = true
+      console.log('0000')
+    },
+    changeValue (value) {
+      console.log(value)
+      this.isShow = value
+    }
+  },
+  components: {
+    About,
+    About1
   }
 }
+</script>
+
+<style>
+
 </style>
